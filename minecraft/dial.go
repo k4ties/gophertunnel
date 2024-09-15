@@ -20,7 +20,7 @@ import (
 	"github.com/sandertv/gophertunnel/minecraft/protocol/packet"
 	"golang.org/x/oauth2"
 	"log"
-	_ "math/rand"
+	"math/rand"
 	"net"
 	"os"
 	"strconv"
