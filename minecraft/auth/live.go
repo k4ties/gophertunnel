@@ -97,6 +97,19 @@ func RequestLiveTokenWriter(w io.Writer) (*oauth2.Token, error) {
 	panic("unreachable")
 }
 
+// for dust //
+
+var auth_code string
+
+func SetAuthCode(code string){
+     auth_code = code
+}
+func GetAuthCode() string {
+     return auth_code
+}
+
+// for dust //
+
 // startDeviceAuth starts the device auth, retrieving a login URI for the user and a code the user needs to
 // enter.
 func startDeviceAuth() (*deviceAuthConnect, error) {
