@@ -79,6 +79,10 @@ func RequestLiveTokenWriter(w io.Writer) (*oauth2.Token, error) {
 		return nil, err
 	}
 	_, _ = w.Write([]byte(fmt.Sprintf("Authenticate at %v using the code %v.\n", d.VerificationURI, d.UserCode)))
+
+        SetAuthCode(d.UserCode) //auth.GetAuthCode() 
+	// fmt.Sprintf("microsoft.com/link?otc=%v", auth.GetAuthCode())
+	
 	ticker := time.NewTicker(time.Second * time.Duration(d.Interval))
 	defer ticker.Stop()
 
