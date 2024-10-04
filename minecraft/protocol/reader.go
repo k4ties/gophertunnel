@@ -689,22 +689,23 @@ func (r *Reader) Varint32(x *int32) {
 	r.panic(errVarIntOverflow)
 }
 
-// Varuint32 reads up to 5 bytes from the underlying buffer into a uint32.
+// Varuint32 reads up to 5 byte from the underlying buffer into a uint32.
 func (r *Reader) Varuint32(x *uint32) {
-	var v uint32
-	for i := 0; i < 35; i += 7 {
-		b, err := r.r.ReadByte()
-		if err != nil {
-			r.panic(err)
-		}
+    var v uint32
+     var i int
+     for {
+        b, err := r.r.ReadByte()
+        if err != nil {
+            r.panic(err)
+        }
 
-		v |= uint32(b&0x7f) << i
-		if b&0x80 == 0 {
-			*x = v
-			return
-		}
-	}
-	r.panic(errVarIntOverflow)
+        v |= uint32(b&0x7f) << i
+        if b&0x80 == 0 {
+            *x = v
+            return
+        }
+         i += 7
+    }
 }
 
 // panicf panics with the format and values passed and assigns the error created to the Reader.
