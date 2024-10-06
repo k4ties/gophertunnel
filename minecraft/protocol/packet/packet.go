@@ -16,7 +16,7 @@ type Packet interface {
 	// protocol.Writer. On the other hand, when passing a protocol.Reader,
 	// Marshal will decode the bytes from the reader into the Packet.
 	Marshal(io protocol.IO)
-	Cancel(bool)
+	// хуйню сделал
 }
 
 // Header is the header of a packet. It exists out of a single varuint32 which is composed of a packet ID and
