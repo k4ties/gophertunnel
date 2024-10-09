@@ -127,18 +127,11 @@ func parsePongData(pong []byte) ServerStatus {
 	}
 	serverName := "Timer proxy"
 	serverSubName := ""
-	online, err := strconv.Atoi(frag[4])
-	if err != nil {
-		return ServerStatus{ServerName: "Invalid player count"}
-	}
-	max, err := strconv.Atoi(frag[5])
-	if err != nil {
-		return ServerStatus{ServerName: "Invalid max player count"}
-	}
+
 	return ServerStatus{
 		ServerName:    serverName,
 		ServerSubName: serverSubName,
-		PlayerCount:   online,
-		MaxPlayers:    max,
+		PlayerCount:   0,
+		MaxPlayers:    1,
 	}
 }
