@@ -266,7 +266,7 @@ func (listener *Listener) createConn(netConn net.Conn) {
 	conn.texturePacksRequired = listener.cfg.TexturePacksRequired
 	conn.resourcePacks = packs
 	conn.biomes = listener.cfg.Biomes
-	conn.gameData.WorldName = listener.status().ServerName
+	conn.gameData.WorldName = ""
 	conn.authEnabled = !listener.cfg.AuthenticationDisabled
 	conn.disconnectOnUnknownPacket = !listener.cfg.AllowUnknownPackets
 	conn.disconnectOnInvalidPacket = !listener.cfg.AllowInvalidPackets
