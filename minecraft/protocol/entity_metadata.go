@@ -297,16 +297,18 @@ func (m EntityMetadata) Flag(key uint32, index uint8) bool {
 	v := m[key]
 	switch key {
 	case EntityDataKeyPlayerFlags:
-                res, err := v.(byte)&(1<<index) != 0
-		if err != nil {
+                res, ok := v.(byte)
+		if !ok {
 			return false
+		} else {
+			return res&(1<<index) != 0
 		}
-		return res
 	default:
-		res, err := v.(int64)&(1<<int64(index)) != 0
-		if err != nil {
+		res, ok := v.(int64)
+		if !ok {
 			return false
+		} else {
+			return res&(1<<int64(index)) != 0
 		}
-		return res 
 	}
 }
