@@ -168,6 +168,13 @@ func (listener *Listener) Accept() (net.Conn, error) {
 	return conn, nil
 }
 
+var motd string
+
+// SetMotd ...
+func (listener ListenConfig) SetMotd(m string) {
+	motd = m
+}
+
 // Disconnect disconnects a Minecraft Conn passed by first sending a disconnect with the message passed, and
 // closing the connection after. If the message passed is empty, the client will be immediately sent to the
 // server list instead of a disconnect screen.
@@ -211,7 +218,7 @@ func (listener *Listener) Close() error {
 // server name of the listener, provided the listener isn't currently hijacking the pong of another server.
 func (listener *Listener) updatePongData() {
 	s := listener.status()
-	s.ServerSubName = "§sDust Relay"
+	s.ServerSubName = motd
 	listener.listener.PongData([]byte(fmt.Sprintf("MCPE;%v;%v;%v;%v;%v;%v;%v;%v;%v;%v;%v;%v;",
 		s.ServerName, protocol.CurrentProtocol, protocol.CurrentVersion, s.PlayerCount, s.MaxPlayers,
 		listener.listener.ID(), s.ServerSubName, "Creative", 1, listener.Addr().(*net.UDPAddr).Port, listener.Addr().(*net.UDPAddr).Port, 0,
