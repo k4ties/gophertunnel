@@ -171,7 +171,7 @@ func (listener *Listener) Accept() (net.Conn, error) {
 var motd string
 
 // SetMotd ...
-func (listener ListenConfig) SetMotd(m string) {
+func SetMotd(m string) {
 	motd = m
 }
 
